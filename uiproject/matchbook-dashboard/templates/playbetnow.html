@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Play Bet Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+      --bg: #050e1a;
+      --panel: #0b1626;
+      --card: #0e1f33;
+      --muted: #8aa2c0;
+      --accent: #3b82f6;
+      --success: #22c55e;
+      --danger: #ef4444;
+
+      --border: rgba(255, 255, 255, 0.06);
+      --glass: rgba(255, 255, 255, 0.04);
+    }
+
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Roboto, Arial;
+      background: linear-gradient(180deg, #050812, #060606);
+      color: #e6eef8;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: #1A2332;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #dbeafe
+    }
+
+    .live-toggle-btn {
+      background: #ff0077;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+
+    .live-toggle-btn:hover {
+      background: #d60063;
+    }
+
+    .nav .item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: 0.2s;
+    }
+
+    .nav .item:hover,
+    .nav .item.active {
+      background: #222;
+    }
+
+    .nav-icon {
+      width: 22px;
+      margin-right: 10px;
+    }
+
+    /* =============== RESPONSIVE =============== */
+
+    @media (max-width: 600px) {
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .live-toggle-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .live-btn {
+        font-size: 10px;
+      }
+    }
+
+
+    .nav .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+
+    .nav .item.active {
+      background: linear-gradient(145deg, #0d2b45, #0a1e32);
+      box-shadow: inset 0 0 0 1px var(--border);
+      height: 43px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .sidebar .foot {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* Main */
+    .main {
+      flex: 1;
+      padding: 0 22px 22px 22px;
+      overflow: auto
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 17px;
+      flex-wrap: wrap;
+      /* ✅ allow wrapping on small screens */
+      background: #1A2332;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 700
+    }
+
+    .status {
+      background: #1A2332;
+      padding: 8px 12px;
+      border-radius: 999px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+      border: 1px solid #e5e7eb;
+
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block
+    }
+
+    .bot-status-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #9fb7d9;
+      margin-right: 10px;
+    }
+
+
+    /* capsule switch */
+    .capsule {
+      display: inline-flex;
+      align-items: center;
+      background: #0b2433;
+      padding: 4px;
+      border-radius: 999px;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.03)
+    }
+
+    .capsule button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .capsule button.active {
+      background: linear-gradient(90deg, var(--accent), #06b6d4);
+      color: #021124;
+      box-shadow: 0 6px 18px rgba(59, 130, 246, 0.15)
+    }
+
+    /* stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .stat-card {
+      position: relative;
+      background: linear-gradient(180deg, #162235, #0f1a2c);
+      padding: 18px 60px 18px 18px;
+      /* ✅ right space for icon */
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Common icon box */
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      top: 18px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Each card icon */
+    .stat-card:nth-child(1)::after {
+      background-color: rgba(0, 136, 255, 0.25);
+      background-image: url('/static/icons/active\ players.png');
+    }
+
+    .stat-card:nth-child(2)::after {
+      background-color: rgba(180, 120, 255, 0.25);
+      background-image: url('/static/icons/totel\ bet.png');
+    }
+
+    .stat-card:nth-child(3)::after {
+      background-color: rgba(0, 200, 120, 0.25);
+      background-image: url('/static/icons/last\ bet.png');
+    }
+
+
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .stat-value {
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 8px
+    }
+
+    /* panels */
+    .panel {
+      margin-top: 20px;
+      background: #1A2332;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+    }
+
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .panel-head-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      /* spacing between dropdown and button */
+    }
+
+
+    .btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .btn-add {
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    }
+
+
+    .btn-save {
+      background: #10b981;
+      color: #fff
+    }
+
+    table {
+      width: 100%;
+      min-width: 800px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: #343B5C;
+      padding: 14px 12px;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    tbody td {
+      padding: 14px 12px;
+      background: rgba(255, 255, 255, 0.01);
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:hover td {
+      background: rgba(59, 130, 246, 0.06);
+    }
+
+
+    .tag {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #9fd3ff;
+      font-weight: 600;
+    }
+
+
+    .actions button {
+      margin-left: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      background: transparent
+    }
+
+    .actions button:hover {
+      color: #fff
+    }
+
+    #logs {
+      background: #1A2332;
+      border-radius: 10px;
+      max-height: 260px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .log-item {
+      font-size: 13px;
+      color: #9fb7d9;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+
+    /* Overlay */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 40;
+    }
+
+    /* Modal box background */
+    .modal-box {
+      background: #1A2332;
+      /* ✅ modal background */
+      padding: 16px 18px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      width: 740px;
+      max-width: 92%;
+      color: #e6eef8;
+    }
+
+    /* Header */
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #2a3344;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.05);
+      margin: 12px 0;
+    }
+
+    .field {
+
+      margin-bottom: 12px;
+    }
+
+    /* Labels */
+    .field label {
+      font-size: 12px;
+      color: #DDDDDD;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    /* Inputs style like image */
+    .field input,
+    .field select {
+      width: 100%;
+      background: #202938;
+      /* ✅ field background */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: #e6eef8;
+      font-size: 13px;
+      height: 52px;
+
+    }
+
+    /* Hint text */
+    .hint {
+      font-size: 11px;
+      color: #6f86aa;
+      margin-top: 4px;
+    }
+
+    /* Chips (Spread / Moneyline) */
+    .chips {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .gt-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .gt-btn {
+      background: #202938;
+      border: none;
+      padding: 6px 12px;
+      color: #9aa4b2;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .gt-btn.active {
+      background: rgba(58, 127, 225, 0.18);
+      /* same as #3A7FE12E */
+      color: white;
+      border: 1px solid #3A7FE1;
+    }
+
+    .gt-panel.hidden {
+      display: none;
+    }
+
+    select {
+      width: 100%;
+      background: #202938;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 9px;
+      appearance: none;
+    }
+
+
+    .chip {
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 20px;
+      background: #0f3c7a;
+      color: #70b8ff;
+    }
+
+    /* Action buttons */
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    #gameTypeFilter {
+      appearance: auto !important;
+      -webkit-appearance: auto !important;
+      -moz-appearance: auto !important;
+      background-image: url("data:image/svg+xml,%3Csvg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 35px;
+    }
+
+    /* Cancel */
+    .btn-outline {
+      flex: 1;
+      background: transparent;
+      border: 1px solid #1b6fdc;
+      color: #8cbcff;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .live-btn {
+      color: #fff;
+      border: 1px solid #080808;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Save */
+    .btn-primary {
+      flex: 1;
+      background: #0088ff;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+
+    tr.highlight-edit td {
+      outline: 2px solid rgba(59, 130, 246, 0.12)
+    }
+
+    .section {
+      display: block
+    }
+
+    .gt-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #676767;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+    }
+
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .page-btn {
+      background: #0a2540;
+      border: 1px solid var(--border);
+      color: #9db7dc;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+
+    .page-btn.active {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      color: #fff;
+    }
+
+    .bot-toggle {
+      width: 50px;
+      height: 28px;
+      background: #808080;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    /* Fix dropdown arrow */
+    select {
+      appearance: auto !important;
+      -webkit-appearance: auto !important;
+      -moz-appearance: auto !important;
+    }
+
+    .with-arrow {
+      appearance: auto;
+      -webkit-appearance: auto;
+      -moz-appearance: auto;
+    }
+
+
+
+    .bot-toggle.running {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .toggle-circle {
+      width: 22px;
+      height: 22px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: 0.3s ease;
+    }
+
+    .bot-toggle.running .toggle-circle {
+      left: 25px;
+    }
+
+
+    /* sections handled by JS classes */
+
+    @media(max-width:768px) {
+      body {
+        flex-direction: row;
+        /* keep sidebar */
+      }
+
+      .sidebar {
+        width: 119px;
+      }
+
+      .main {
+        font-size: 13px;
+      }
+
+      table {
+        min-width: 650px;
+      }
+
+      .nav .item {
+        padding: 16px 0 !important;
+        font-size: 10px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .topbar .title {
+        font-size: 18px;
+      }
+
+      .topbar .status {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    /* Responsive panel header (mobile/tablet) */
+    @media (max-width: 680px) {
+      .panel-head {
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .panel-head-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .panel-head-right select,
+      .panel-head-right button {
+        width: 100%;
+      }
+    }
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-box {
+  width: 450px;
+  background: #1b2431;
+  border-radius: 14px;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close {
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #aab4c0;
+}
+
+/* Inputs */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #2c3a4b;
+  background: #121a26;
+  color: #fff;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #2d8cff;
+}
+
+/* Footer */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 48%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn.cancel {
+  background: #2c3a4b;
+  color: #fff;
+}
+
+.btn.save {
+  background: #2d8cff;
+  color: #fff;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR (same as dashboard) -->
+  <div class="sidebar">
+    <div class="brand">Betwar AB</div>
+
+    <div class="nav">
+      <a href="dashboard.html" class="item">
+        <img src="/static/icons/darhboard.png" class="nav-icon">
+        <span>Betwar</span>
+      </a>
+
+      <div class="item active">
+        <img src="/static/icons/darhboard.png" class="nav-icon">
+        <span>Play Bet Now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PLAY BET NOW -->
+  <div class="main">
+    <div class="topbar">
+      <div class="title">Play Bet Now Center</div>
+      <div class="status">
+        <div class="bot-status-text">Bot Status</div>
+        <div style="margin-left:12px; display:flex; align-items:center; gap:10px;">
+          <div class="bot-toggle" id="bot-toggle">
+            <div class="toggle-circle"></div>
+          </div>
+          <span id="bot-label" style="font-weight:600;">Stopped</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Play Bet Now specific stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Active Users</div>
+        <div id="stat-users" class="stat-value">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bets This Session</div>
+        <div id="stat-bets-session" class="stat-value">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Last Bet Placed</div>
+        <div id="stat-last-bet" class="stat-value">—</div>
+      </div>
+    </div>
+
+    <!-- Play Bets Table -->
+    <div class="panel">
+      <div class="panel-head">
+        <div style="font-weight:700">Active Bets</div>
+        <div class="panel-head-right">
+          <button class="btn btn-add" onclick="openAddModal()">+ Add User</button>
+        </div>
+      </div>
+
+      <div style="overflow:auto; border-radius:8px;">
+        <table id="playbets-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Sports</th>
+              <th>Sides</th>
+              <th>Totals</th>
+              <th>Before Game</th>
+              <th>Status</th>
+              <th>Mode</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Play Bets Logs -->
+    <div class="panel logs" style="margin-top:16px;">
+      <div style="font-weight:700; margin-bottom:8px">Play Bet Logs</div>
+      <div id="logs"
+        style="height:300px; overflow-y:auto; background:#111; color:#0f0; padding:8px; font-family:monospace; font-size:12px;">
+      </div>
+    </div>
+
+  </div>
+  <script>
+async function loadUsers() {
+  const res = await fetch("/api/playbet/users");
+  const users = await res.json();
+
+  const tbody = document.querySelector("#playbets-table tbody");
+  tbody.innerHTML = "";
+
+  users.forEach(u => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${u.username || "-"}</td>
+      <td>${u.sport || "-"}</td>
+      <td>${u.side || "-"}</td>
+      <td>${u.total || "-"}</td>
+      <td>${u.before_game || "-"}</td>
+      <td>${u.status || "active"}</td>
+      <td>${u.mode || "dry"}</td>
+    
+      <td class="actions">
+        <button 
+        data-user='${JSON.stringify(u)}'
+        onclick="openEditModal(JSON.parse(this.dataset.user))" title="Edit" class="icon-btn" style="
+          background: green;
+          color: white;
+          padding: 10px 14px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+        ">Edit</button>
+        <button onclick="deleteUser('${u.username}')" title="Delete" class="icon-btn">
+          <img src="/static/icons/Trash.png" alt="delete">
+        </button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+async function loadStats() {
+  const res = await fetch("/api/playbet/users");
+  const users = await res.json();
+
+  document.getElementById("stat-users").innerText = users.length;
+
+  // Example placeholders (customize if backend provides)
+  document.getElementById("stat-bets-session").innerText = "0";
+
+  const last = users.length ? users[users.length - 1].username : "-";
+  document.getElementById("stat-last-bet").innerText = last;
+}
+
+async function addUser() {
+  const username = prompt("Username:");
+  const password = prompt("Password:");
+  const sport = prompt("Sport:");
+  const side = prompt("Side:");
+  const total = prompt("Total:");
+  const before_game = prompt("Before Game:");
+
+  if (!username || !password) return;
+
+  await fetch("/api/playbet/user", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      username,
+      password,
+      sport,
+      side,
+      total,
+      before_game,
+      mode: "dry",
+      status: "active"
+    })
+  });
+
+  loadUsers();
+}
+
+// ================= DELETE =================
+async function deleteUser(username) {
+  await fetch(`/api/playbet/user/${username}`, {
+    method: "DELETE"
+  });
+
+  loadUsers();
+}
+
+async function editUser(username) {
+  const sport = prompt("Sport:");
+  const side = prompt("Side:");
+  const total = prompt("Total:");
+  const before_game = prompt("Before Game:");
+
+  await fetch(`/api/playbet/user/${username}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      username,
+      sport,
+      side,
+      total,
+      before_game,
+      mode: "dry",
+      status: "active"
+    })
+  });
+
+  loadUsers();
+}
+
+
+// ================= BOT STATUS =================
+async function loadBotStatus() {
+  const res = await fetch("/api/playbet/config");
+  const config = await res.json();
+
+  const toggle = document.getElementById("bot-toggle");
+  const label = document.getElementById("bot-label");
+
+  if (config.bot_running) {
+    toggle.classList.add("running");
+    label.innerText = "Running";
+    running = true;
+  } else {
+    toggle.classList.remove("running");
+    label.innerText = "Stopped";
+    running = false;
+  }
+}
+
+loadBotStatus();
+
+
+// ================= TOGGLE BOT =================
+const toggle = document.getElementById("bot-toggle");
+const label = document.getElementById("bot-label");
+
+let running = false;
+
+toggle.onclick = async () => {
+  if (running) {
+    await fetch("/api/playbet/bot/stop");
+    running = false;
+    label.innerText = "Stopped";
+    toggle.classList.remove("running");
+  } else {
+    await fetch("/api/playbet/bot/start");
+    running = true;
+    label.innerText = "Running";
+    toggle.classList.add("running");
+  }
+};
+
+
+// ================= INIT =================
+loadUsers();
+
+</script>
+<script>
+  let editMode = false;
+let editUsername = null;
+
+function openAddModal() {
+  editMode = false;
+  editUsername = null;
+
+  document.getElementById("modalTitle").innerText = "Add User";
+
+  document.querySelectorAll("#userModal input").forEach(i => i.value = "");
+  document.getElementById("userModal").style.display = "flex";
+}
+
+function openEditModal(user) {
+  editMode = true;
+  editUsername = user.username;
+
+  document.getElementById("modalTitle").innerText = "Edit User";
+
+  document.getElementById("m_username").value = user.username;
+  document.getElementById("m_password").value = user.password || "";
+  document.getElementById("m_sport").value = user.sport || "";
+  document.getElementById("m_side").value = user.side || "";
+  document.getElementById("m_total").value = user.total || "";
+  document.getElementById("m_before_game").value = user.before_game || "";
+  document.getElementById("m_mode").value = user.mode || "dry";
+  document.getElementById("m_status").value = user.status || "active";
+
+  document.getElementById("userModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("userModal").style.display = "none";
+}
+async function saveUser() {
+  const data = {
+    username: document.getElementById("m_username").value,
+    password: document.getElementById("m_password").value,
+    sport: document.getElementById("m_sport").value,
+    side: document.getElementById("m_side").value,
+    total: document.getElementById("m_total").value,
+    before_game: document.getElementById("m_before_game").value,
+    mode: document.getElementById("m_mode").value,
+    status: document.getElementById("m_status").value
+  };
+
+  if (!data.username) return alert("Username required");
+
+  if (editMode) {
+    await fetch(`/api/playbet/user/${editUsername}`, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    });
+  } else {
+    await fetch("/api/playbet/user", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    });
+  }
+
+  closeModal();
+  loadUsers();
+}
+</script>
+<div id="userModal" class="modal">
+  <div class="modal-box">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 id="modalTitle">Add User</h2>
+      <span class="close" onclick="closeModal()">✕</span>
+    </div>
+
+    <!-- Fields -->
+    <label>Username</label>
+    <input id="m_username" placeholder="Enter username">
+
+    <label>Password</label>
+    <input id="m_password" type="password" placeholder="Enter password">
+
+    <label>Sport</label>
+    <input id="m_sport" placeholder="e.g. basketball - nba">
+
+    <label>Side</label>
+    <input id="m_side" placeholder="Enter side">
+
+    <label>Total</label>
+    <input id="m_total" placeholder="Enter total">
+
+    <label>Before Game</label>
+    <input id="m_before_game" placeholder="Enter before game">
+
+    <label>Mode</label>
+    <select id="m_mode">
+      <option value="dry">Dry</option>
+      <option value="live">Live</option>
+    </select>
+
+    <label>Status</label>
+    <select id="m_status">
+      <option value="active">Active</option>
+      <option value="paused">Paused</option>
+    </select>
+
+    <!-- Buttons -->
+    <div class="modal-footer">
+      <button class="btn cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn save" onclick="saveUser()">Save</button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,454 @@
+{
+  "rules": {
+    "wsp025": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          },
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      }
+    },
+    "wsp026": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "wsp058": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "pir472": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 10.0
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "brd009": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "pir743": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      }
+    },
+    "pir737": {
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      },
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "sms149": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "pir632": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "sms134": {
+      "basketball - nba": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          },
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      },
+      "basketball - cbb": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      }
+    },
+    "pir695": {
+      "basketball - ncaa": {
+        "game_types": {
+          "spread": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0
+          },
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      },
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": [
+              "22:00",
+              "09:30"
+            ]
+          }
+        }
+      }
+    },
+    "miz217": {
+      "basketball - nba": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0
+          }
+        }
+      }
+    },
+    "pc5014": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "pc5057": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "pc5058": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "wsp014": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "wsp033": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 0,
+            "line": 0.0,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    },
+    "wsp059": {
+      "basketball - ncaa": {
+        "game_types": {
+          "total": {
+            "value": 120,
+            "line": 0.5,
+            "price": 5.0,
+            "time_restriction": []
+          }
+        }
+      }
+    }
+  },
+  "allowed_players_with_sports": {
+    "wsp026": [
+      "basketball - nba",
+      "football - fcs",
+      "basketball - ncaa"
+    ],
+    "wsp025": [
+      "basketball - ncaa",
+      "basketball - nba"
+    ],
+    "wsp058": [
+      "basketball - ncaa"
+    ],
+    "rtb101": [
+      "basketball - ncaa"
+    ],
+    "pir472": [
+      "basketball - ncaa"
+    ],
+    "brd009": [
+      "basketball - ncaa"
+    ],
+    "wsp014": [
+      "basketball - ncaa"
+    ],
+    "pir743": [
+      "basketball - ncaa"
+    ],
+    "pir737": [
+      "basketball - ncaa",
+      "basketball - nba"
+    ],
+    "sms149": [
+      "basketball - ncaa"
+    ],
+    "pir837": [
+      "basketball - ncaa"
+    ],
+    "wsp059": [
+      "basketball - ncaa"
+    ],
+    "pir632": [
+      "basketball - ncaa"
+    ],
+    "pc5057": [
+      "basketball - ncaa"
+    ],
+    "pc5014": [
+      "basketball - ncaa"
+    ],
+    "pc5058": [
+      "basketball - ncaa"
+    ],
+    "miz217": [
+      "basketball - nba"
+    ]
+  },
+  "live_mode": true
+}

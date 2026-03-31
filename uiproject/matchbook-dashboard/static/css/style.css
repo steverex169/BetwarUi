@@ -1,0 +1,8 @@
+/* small helper to ensure modal centers nicely */
+#playerModal, #manualBetModal {
+  display: none;
+}
+#playerModal > div, #manualBetModal > div {
+  max-height: 90vh;
+  overflow-y: auto;
+}

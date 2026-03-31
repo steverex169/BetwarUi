@@ -1,0 +1,27 @@
+{
+  "bot_running": false,
+  "mode": "dry",
+  "users": [
+    {
+      "username": "LV147",
+      "password": "FFERWE",
+      "sport": "ERER",
+      "game_type": "ERE",
+      "side": "ER",
+      "total": "ER43",
+      "before_game": "3REW",
+      "mode": "dry",
+      "status": "active"
+    },
+    {
+      "username": "LV121",
+      "password": "wjhwiuwww",
+      "sport": "nba",
+      "side": "0.1",
+      "total": "1.0",
+      "before_game": "10",
+      "mode": "live",
+      "status": "active"
+    }
+  ]
+}
